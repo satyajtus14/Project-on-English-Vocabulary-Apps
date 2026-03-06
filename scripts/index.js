@@ -62,46 +62,6 @@ const loadLevelWord = (id) => {
         
     
 }
-
-/* Load Specific word details */
-const loadWordDetails = async (id) => {
-    const url = `https://openapi.programming-hero.com/api/word/${id}`;
-   const res = await fetch(url);
-   const details = await res.json();
-   displayWordDetails(details.data);
-    
-}
-
-/* Modal Section and displaying details of specific word */
-const displayWordDetails = (word) => {
-      
-    const detailsBox = document.getElementById('details-container');
-    detailsBox.innerHTML = `
-    <div class="">
-        <h2 class="text-2xl font-bold">${word.word} (<i class="fa-solid fa-microphone-lines"></i> :${word.pronunciation})</h2>
-     </div>
-     <div class="">
-        <h2 class="font-bold">Meaning</h2>
-        <p>${word.meaning}</p>
-     </div>
-     <div class="">
-        <h2 class="font-bold">Example</h2>
-        <p>${word.sentence}</p>
-        
-     </div>
-     <div class="">
-        <h2 class="font-bold">সমার্থক শব্দ গুলো</h2>
-     
-         <div class="gap-3">${createElement(word.synonyms)}</div>
-        <br> <br>
-        <button class="btn btn-primary w-50 ">Complete Learning</button>
-     </div>
-    
-    
-    `;
-    document.getElementById('word_modal').showModal();  
-};
-
 const displayLevelWord = (words) => {
     /* step-1 Get the container and empty it */
 const wordContainer = document.getElementById('word-container');
@@ -171,6 +131,48 @@ const displayLessons = (lessons) => {
 
 /* Calling function for loading lesson no */
 loadLessons();
+
+
+
+/* Load Specific word details */
+const loadWordDetails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+   const res = await fetch(url);
+   const details = await res.json();
+   displayWordDetails(details.data);
+    
+}
+
+/* Modal Section and displaying details of specific word */
+const displayWordDetails = (word) => {
+      
+    const detailsBox = document.getElementById('details-container');
+    detailsBox.innerHTML = `
+    <div class="">
+        <h2 class="text-2xl font-bold">${word.word} (<i class="fa-solid fa-microphone-lines"></i> :${word.pronunciation})</h2>
+     </div>
+     <div class="">
+        <h2 class="font-bold">Meaning</h2>
+        <p>${word.meaning}</p>
+     </div>
+     <div class="">
+        <h2 class="font-bold">Example</h2>
+        <p>${word.sentence}</p>
+        
+     </div>
+     <div class="">
+        <h2 class="font-bold">সমার্থক শব্দ গুলো</h2>
+     
+         <div class="gap-3">${createElement(word.synonyms)}</div>
+        <br> <br>
+        <button class="btn btn-primary w-50 gap-2 ">Complete Learning</button>
+        
+     </div>
+    
+    
+    `;
+    document.getElementById('word_modal').showModal();  
+};
 
 /* Add Searching feature */
 document.getElementById('btn-search').addEventListener('click', () => {
